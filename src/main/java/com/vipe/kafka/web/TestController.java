@@ -32,11 +32,11 @@ public class TestController {
         for (int i=0; i<2500; i++){
             sendMessage(message+ " -> "+i);
         }
-        System.out.println("Finished ProducerApplication run method...");
         return new ResponseEntity(notification, HttpStatus.OK);
     }
 
     private void sendMessage(String message) {
+
         ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(KafkaTopicConfig.topic1, message);
         future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 
